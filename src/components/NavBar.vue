@@ -6,9 +6,9 @@
       </div>
       <ul class="flex space-x-6 text-lg">
         <li><router-link to="/" class="">Home</router-link></li>
-        <li><router-link to="/about" class="hover:text-blue-400">About</router-link></li>
         <li><router-link to="/todo" class="hover:text-blue-400">Services</router-link></li>
-        <li><router-link to="/register" class="hover:text-blue-400">Register</router-link></li>
+        <li><router-link to="/about" class="hover:text-blue-400">About</router-link></li>
+        <li><router-link to="/login" class="hover:text-blue-400">Login</router-link></li>
       </ul>
     </div>
   </nav>
