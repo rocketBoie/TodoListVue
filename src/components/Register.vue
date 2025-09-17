@@ -67,8 +67,8 @@ const onSubmit = (values) => {
 
         <div class="mt-4">
           <Field name="termsAccepted" as="input" type="checkbox" id="terms" class="mr-2" />
-          <label for="terms" class="text-sm text-white">I accept the <a href="#" class="text-white">terms and
-              conditions</a></label>
+          <label for="terms" class="text-sm text-white">I accept the <router-link to="/about" class="text-blue-400">terms and
+              conditions</router-link></label>
           <ErrorMessage name="termsAccepted" class="text-red-500 text-xs" />
         </div>
 

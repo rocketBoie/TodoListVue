@@ -1,4 +1,5 @@
 <script setup>
+import {ref} from 'vue'
 import { useRouter } from 'vue-router'
 import { toast } from 'vue3-toastify'
 import { Form, Field, useForm, ErrorMessage } from 'vee-validate'
@@ -6,15 +7,13 @@ import * as yup from 'yup'
 import NavBar from './NavBar.vue'
 const route = useRouter()
 
-const router = useRouter()
 
 const schema = yup.object({
     email: yup.string()
         .required('Email is required')
         .email('Email must be a valid email'),
     password: yup.string()
-        .required('Password is required')
-        .min(6, 'Password must be at least 6 characters'),
+        .required('Password is required'),
 })
 
 const { resetForm } = useForm()
@@ -24,7 +23,6 @@ const onSubmit = (values) => {
         toast.success('Logged in successfully!')
         console.log(values)
     })
-    // console.log(values)
     resetForm()
 }
 </script>
@@ -32,7 +30,7 @@ const onSubmit = (values) => {
 <template>
     <div class="bg-cover bg-center h-screen fixed inset-0 flex justify-center items-center"
         style="background-image: url('https://images.pexels.com/photos/4068318/pexels-photo-4068318.jpeg')">
-        <NavBar/>
+        <NavBar :islogin="isLogin" />
         <div class="text-white p-6 rounded-lg shadow-lg w-96 bg-black-90/50">
             <Form @submit="onSubmit" :validation-schema="schema">
                 <h2 class="text-2xl mb-4">Login</h2>
@@ -52,7 +50,8 @@ const onSubmit = (values) => {
 
                 <p class="mt-4 text-sm">
                     Don't have an account?
-                    <router-link to="/register" class="text-pink-200 underline">Register here</router-link>
+                    <br>
+                    <router-link to="/register" class="text-blue-200 underline">Register here</router-link>
                 </p>
             </Form>
         </div>

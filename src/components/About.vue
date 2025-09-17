@@ -1,6 +1,12 @@
 <script setup>
 import { ref } from 'vue'
 import NavBar from './NavBar.vue'
+import Button from './Button.vue'
+import { useRouter } from 'vue-router'
+const route = useRouter()
+const handleRoute = ()=>{
+  route.push({name : "Register"})
+}
 
 const msg = ref("About Us")
 const wel = ref("Get to Know Us Better")
@@ -33,6 +39,8 @@ const des = ref("We're passionate about creating seamless and impactful experien
         <p class="text-white text-base sm:text-lg lg:text-xl mt-6 max-w-3xl mx-auto">
           Our values are deeply rooted in integrity, collaboration, and excellence. We believe in building long-term relationships with our clients and working closely with them to achieve their goals.
         </p>
+        <br>
+        <Button @click="handleRoute" :text="'Register Now'" class="cursor-pointer" />
       </div>
     </div>
   </div>
