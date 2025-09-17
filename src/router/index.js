@@ -5,7 +5,6 @@ import Login from "../components/Login.vue";
 import Register from "../components/Register.vue";
 import About from "../components/About.vue";
 
-
 const routes = [
     {path : '/' ,name:"home", component : Main},
     {path : '/Todo' , name:"Todo", component : Todo},
@@ -18,5 +17,8 @@ const router = createRouter({
     history : createWebHistory(),
     routes
 })
+
+
+
 
 export default router

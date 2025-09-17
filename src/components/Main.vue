@@ -34,7 +34,7 @@ const handleRoute = () => {
 
             <h1 class="text-white mt-9 text-3xl animate-fadeIn delay-3000">Continue As Guest ⬇️</h1>
             <Button @click="handleRoute" :text="'Get Started Now'"
-                class="mt-8 px-8 py-4 bg-blue-600 text-white text-lg sm:text-xl font-semibold rounded-lg shadow-xl hover:scale-105 transform transition-all duration-300" />
+                class="cursor-pointer mt-8 px-8 py-4 bg-blue-600 text-white text-lg sm:text-xl font-semibold rounded-lg shadow-xl hover:scale-105 transform transition-all duration-300" />
         </div>
     </div>
 </template>
