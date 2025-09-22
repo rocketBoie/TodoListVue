@@ -1,29 +1,33 @@
 <script setup>
-import {ref} from 'vue'
 import { useRouter } from 'vue-router'
 import { toast } from 'vue3-toastify'
 import { Form, Field, useForm, ErrorMessage } from 'vee-validate'
 import * as yup from 'yup'
 import NavBar from './NavBar.vue'
-const route = useRouter()
+import { GoogleLogin } from 'vue3-google-login'
 
+const router = useRouter()
 
 const schema = yup.object({
-    email: yup.string()
-        .required('Email is required')
-        .email('Email must be a valid email'),
-    password: yup.string()
-        .required('Password is required'),
+    email: yup.string().required('Email is required').email('Email must be a valid email'),
+    password: yup.string().required('Password is required'),
 })
 
 const { resetForm } = useForm()
 
 const onSubmit = (values) => {
-    route.push({ name: "home" }).then(() => {
+    router.push({ name: 'home' }).then(() => {
         toast.success('Logged in successfully!')
-        console.log(values)
+        console.log('Form login:', values)
     })
     resetForm()
+}
+
+const googleCallback = (response) => {
+    router.push({ name: 'home' }).then(()=>{
+        toast.success("Google Login Successfull")
+        console.log('Google login response:', response)
+    })
 }
 </script>
 
@@ -31,7 +35,8 @@ const onSubmit = (values) => {
     <div class="bg-cover bg-center h-screen fixed inset-0 flex justify-center items-center"
         style="background-image: url('https://images.pexels.com/photos/4068318/pexels-photo-4068318.jpeg')">
         <NavBar :islogin="isLogin" />
-        <div class="text-white p-6 rounded-lg shadow-lg w-96 bg-black-90/50">
+
+        <div class="text-white p-6 rounded-lg shadow-lg w-96 bg-black-90/50 space-y-4">
             <Form @submit="onSubmit" :validation-schema="schema">
                 <h2 class="text-2xl mb-4">Login</h2>
 
@@ -45,15 +50,21 @@ const onSubmit = (values) => {
                     class="mt-1 p-2 border border-gray-300 rounded-md w-full" autocomplete="current-password" />
                 <ErrorMessage name="password" class="text-red-500 text-xs" />
 
-                <button type="submit"
-                    class="mt-4 bg-blue-500 text-white p-2 rounded-lg w-full cursor-pointer">Login</button>
-
-                <p class="mt-4 text-sm">
-                    Don't have an account?
-                    <br>
-                    <router-link to="/register" class="text-blue-200 underline">Register here</router-link>
-                </p>
+                <button type="submit" class="mt-4 bg-blue-500 text-white p-2 rounded-lg w-full cursor-pointer">
+                    Login
+                </button>
             </Form>
+
+            <div class="text-center text-white">or</div>
+            <div class="w-[20vw] max-w-md mx-auto flex items-center justify-center">
+                <GoogleLogin  :callback="googleCallback" />
+            </div>
+
+            <p class="mt-4 text-sm text-white">
+                Don't have an account?
+                <br />
+                <router-link to="/register" class="text-blue-200 underline">Register here</router-link>
+            </p>
         </div>
     </div>
 </template>

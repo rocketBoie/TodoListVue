@@ -25,7 +25,7 @@ const schema = yup.object({
 
 const { resetForm } = useForm({
   validationSchema: schema,
-})
+})  
 
 const onSubmit = (values) => {
   route.push({ name: "Login" }).then(() => {

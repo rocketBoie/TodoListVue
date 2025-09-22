@@ -4,7 +4,7 @@ export const todoStore = defineStore("todo", {
   state: () => ({
     msg: "Welcome To TodoList",
     inputText: "",
-    pendingTasks: [],
+    pendingTasks: [],                                                                                                                                                          
     completedTasks: [],
     waitingTasks: [],
     isEditing: false,
